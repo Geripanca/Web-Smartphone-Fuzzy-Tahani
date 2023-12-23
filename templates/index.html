@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Re-Phone</title>
+    <link rel="icon" type="image/x-icon" href="assets/Re-Sphone-Logo.ico" />
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}" />
+  </head>
+  <body>
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          </div>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <li><a>Beranda</a></li>
+            <li><a>Tentang</a></li>
+            <li><a>Proyek</a></li>
+          </ul>
+        </div>
+        <a class="btn btn-ghost text-xl">Re-SPhone</a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a>Beranda</a></li>
+          <li><a>Tentang</a></li>
+          <li><a>Proyek</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <a class="btn">Login</a>
+      </div>
+    </div>
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-content text-center">
+        <div class="max-w-md mb-12">
+          <h1 class="text-5xl font-bold">Rekomendasi <span style="font-style: italic">Smartphone</span></h1>
+          <p class="py-6">
+            <span style="font-style: italic">Website</span> berfungsi untuk merekomendasikan <span style="font-style: italic">Smartphone</span> dengan bantuan Logika Fuzzy Tahani, Adapun <span style="font-style: italic">Website</span> ini
+            merupakan produk dari tugas akhir Kecerdasan Buatan yang diampu oleh Erna Piantari,S.Kom.,M.T.
+          </p>
+          <button class="btn btn-primary">Mulai</button>
+        </div>
+      </div>
+    </div>
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+      <aside>
+        <p>Copyright © {{year}} - Oleh Kelompok 7</p>
+      </aside>
+    </footer>
+  </body>
+</html>
