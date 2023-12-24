@@ -14,7 +14,11 @@ def tentang():
     return render_template('tentang.html')
 @app.route("/proyek")
 def proyek():
-    return render_template('proyek.html')
+    year = datetime.datetime.now().year
+    return render_template('proyek.html', year=year)
+@app.route("/login")
+def login():
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)		

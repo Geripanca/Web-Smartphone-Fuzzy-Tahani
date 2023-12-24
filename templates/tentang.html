@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Re-Phone</title>
+    <title>Re-SPhone</title>
     <link rel="icon" type="image/x-icon" href="assets/Re-Sphone-Logo.ico" />
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}" />
   </head>
   <body>
-    <div class="navbar bg-base-100 ">
+    <div class="navbar bg-base-100">
       <div class="navbar-start">
         <div class="dropdown">
           <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -31,46 +31,45 @@
         </ul>
       </div>
       <div class="navbar-end">
-        <a class="btn">Login</a>
+        <a href="{{ url_for('login') }}" class="btn" class="btn">Login</a>
       </div>
     </div>
-        <br>
-        <br>
-      <div class=" text-center mb-10">
-          <h1 class="text-5xl font-bold">Tentang</h1>
-          <p class="py-6">Kami dari kelompok 7 mengerjakan <span style="font-style: italic">Website</span> ini dengan menggunakan <span style="font-style: italic">Microframework</span> Python yaitu Flask dan untuk UI menggunakan Tailwind CSS    </p>
+    <!-- Akhir Navbar-->
+    <!-- component -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+      <div class="text-center pb-12">
+        <h2 class="text-base font-bold text-gray-400">Kelompok 7</h2>
+        <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-700">Anggota</h1>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="w-full bg-base-200 rounded-lg p-12 flex flex-col justify-center items-center">
+          <div class="mb-8">
+            <img class="object-center object-cover rounded-full h-36 w-36" src="https://institutcommotions.com/wp-content/uploads/2018/05/blank-profile-picture-973460_960_720-1.png" alt="photo" />
+          </div>
+          <div class="text-center">
+            <p class="text-xl text-gray-600 font-bold mb-2">Aditya Dwi Hartono</p>
+            <p class="text-base text-gray-400 font-normal">2006948</p>
+          </div>
+        </div>
+        <div class="w-full bg-base-200 rounded-lg p-12 flex flex-col justify-center items-center">
+          <div class="mb-8">
+            <img class="object-center object-cover rounded-full h-36 w-36" src="https://institutcommotions.com/wp-content/uploads/2018/05/blank-profile-picture-973460_960_720-1.png" alt="photo" />
+          </div>
+          <div class="text-center">
+            <p class="text-xl text-gray-600 font-bold mb-2">Geri Tri Panca Tamba</p>
+            <p class="text-base text-gray-400 font-normal">2005649</p>
+          </div>
+        </div>
+        <div class="w-full bg-base-200 rounded-lg p-12 flex flex-col justify-center items-center">
+          <div class="mb-8">
+            <img class="object-center object-cover rounded-full h-36 w-36" src="https://institutcommotions.com/wp-content/uploads/2018/05/blank-profile-picture-973460_960_720-1.png" alt="photo" />
+          </div>
+          <div class="text-center">
+            <p class="text-xl text-gray-600 font-bold mb-2">Rizki Faturahman Sutisna</p>
+            <p class="text-base text-gray-400 font-normal">2010097</p>
+          </div>
         </div>
       </div>
-    
-    <!-- team kami-->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-9 ">
-        <div class="w-1/3 bg-base-100 rounded-lg p-12 flex flex-col justify-center items-center ">
-            <div class="mb-8">
-                <img class="object-center object-cover rounded-full h-36 w-36" src="https://media.istockphoto.com/illustrations/blank-man-profile-head-icon-placeholder-illustration-id1298261537?k=20&m=1298261537&s=612x612&w=0&h=8plXnK6Ur3LGqG9s-Xt2ZZfKk6bI0IbzDZrNH9tr9Ok=" alt="photo">
-            </div>
-            <div class="text-center">
-                <p class="text-xl text-gray-500 font-bold mb-2">Aditya Dwi Hartono</p>
-                <p class="text-base text-gray-400 font-normal">2006948</p>
-            </div>
-        </div>
-        <div class="w-full bg-base-100 rounded-lg p-12 flex flex-col justify-center items-center">
-            <div class="mb-8">
-                <img class="object-center object-cover rounded-full h-36 w-36" src="https://media.istockphoto.com/illustrations/blank-man-profile-head-icon-placeholder-illustration-id1298261537?k=20&m=1298261537&s=612x612&w=0&h=8plXnK6Ur3LGqG9s-Xt2ZZfKk6bI0IbzDZrNH9tr9Ok=" alt="photo">
-            </div>
-            <div class="text-center">
-                <p class="text-xl text-gray-500 font-bold mb-2">Geri Tri Panca Tamba</p>
-                <p class="text-base text-gray-400 font-normal">2005649</p>
-            </div>
-        </div>
-        <div class="w-full bg-base-100 rounded-lg p-12 flex flex-col justify-center items-center">
-            <div class="mb-8">
-                <img class="object-center object-cover rounded-full h-36 w-36" src="https://media.istockphoto.com/illustrations/blank-man-profile-head-icon-placeholder-illustration-id1298261537?k=20&m=1298261537&s=612x612&w=0&h=8plXnK6Ur3LGqG9s-Xt2ZZfKk6bI0IbzDZrNH9tr9Ok=" alt="photo">
-            </div>
-            <div class="text-center">
-                <p class="text-xl text-gray-500 font-bold mb-2">Rizki Faturahman Sutisna</p>
-                <p class="text-base text-gray-400 font-normal">2010097</p>
-            </div>
-        </div>
-        
+    </section>
   </body>
 </html>

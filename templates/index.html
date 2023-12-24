@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Re-Phone</title>
+    <title>Re-SPhone</title>
     <link rel="icon" type="image/x-icon" href="assets/Re-Sphone-Logo.ico" />
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}" />
   </head>
@@ -31,7 +31,7 @@
         </ul>
       </div>
       <div class="navbar-end">
-        <a class="btn">Login</a>
+        <a href="{{ url_for('login') }}" class="btn" class="btn">Login</a>
       </div>
     </div>
     <div class="hero min-h-screen bg-base-200">
