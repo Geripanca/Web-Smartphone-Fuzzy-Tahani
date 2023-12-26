@@ -52,6 +52,10 @@ def proyek():
     year = datetime.datetime.now().year
     return render_template('proyek.html', year=year)
 
+@app.route("/admin")
+def admin():
+    return render_template('admin.html')
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -71,8 +75,8 @@ def login():
     
         if akun:
             session['logged_in'] = True
-            # session['username'] = akun['username']
-            return redirect(url_for('index'))
+            session['username'] = akun[0]
+            return redirect(url_for('admin'))
         else:
             flash('Username atau password salah', 'danger')
 
@@ -81,9 +85,10 @@ def login():
 # Route untuk logout
 @app.route("/logout")
 def logout():
+    session.clear()
     session.pop('logged_in', None)
     session.pop('username', None)
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
 
 
 @app.route("/<path:path>")  # Tangkap semua request path yang tidak valid
