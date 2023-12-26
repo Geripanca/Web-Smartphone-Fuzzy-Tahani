@@ -15,14 +15,28 @@
       <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
         <h1 class="font-bold text-center text-2xl mb-5">Re-SPhone</h1>
         <div class="bg-base-100 shadow w-full rounded-lg divide-y divide-gray-200">
-          <div class="px-5 py-7">
+          <div class="px-5 py-7">  
+          <form method="POST">   
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <div class="flash-messages">
+                {% for category, message in messages %}
+                  <div class="flash-message {{ category }}">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
+
             <label class="font-semibold text-sm text-gray-600 pb-1 block">Username</label>
-            <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+            <input type="text" name="username" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
             <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
-            <input type="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+            <input type="password" name="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
             <button
-              type="button"
-              class="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+              type="submit"
+              value="Login"
+              class="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
             >
               <span class="inline-block mr-2">Login</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 inline-block">
@@ -30,6 +44,7 @@
               </svg>
             </button>
           </div>
+        </form>
           
         <div class="py-5">
           <div class="grid grid-cols-2 gap-1">

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Re-SPhone</title>
+    <link rel="icon" type="image/x-icon" href="assets/Re-Sphone-Logo.ico" />
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}" />
+  </head>
+  <body>
+    <!-- component -->
+    <main class="h-screen w-full flex flex-col justify-center items-center bg-base-200">
+      <h1 class="text-9xl font-extrabold text-white tracking-widest">404</h1>
+      <div class="bg-indigo-600 px-2 text-sm rounded rotate-12 absolute">Halaman Tidak Ditemukan</div>
+      <button class="mt-5">
+        <a href="{{ url_for('index') }} " class="relative inline-block text-sm font-medium text-indigo-600 group active:text-indigo-500 focus:outline-none focus:ring">
+          <span class="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-indigo-600 group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+          <span class="relative block px-8 py-3 bg-[#1A2238] border border-current">
+            <router-link to="">Go Home</router-link>
+          </span>
+        </a>
+      </button>
+    </main>
+  </body>
+</html>
