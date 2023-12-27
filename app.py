@@ -1,7 +1,6 @@
 import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 import pymysql
-
 app = Flask(__name__)
 
 # Change this to your secret key (can be anything, it's for extra protection)
@@ -13,6 +12,8 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''  
 app.config['MYSQL_DB'] = 'db_resphone'
 
+# Inisialisasi koneksi ke database
+
 #menyambungkan
 def get_db():
     """Menyambungkan ke database."""
@@ -22,6 +23,7 @@ def get_db():
             user=app.config['MYSQL_USER'],
             password=app.config['MYSQL_PASSWORD'],
             database=app.config['MYSQL_DB']
+            
         )
     return g.db
 
@@ -31,12 +33,15 @@ def close_connection(exception):
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
+def datahp():
+    # Ambil semua data dari tabel datahp menggunakan cursor
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM tb_datahp")
+    datahp = cursor.fetchall()
+    return datahp
 
-
-@app.errorhandler(404)  # Tambahkan error handler untuk 404
-def page_not_found(error):
-    return render_template("404.html"), 404
-
+#User
 @app.route("/")
 @app.route("/index")
 def index():
@@ -45,17 +50,33 @@ def index():
 
 @app.route("/tentang")
 def tentang():
-    return render_template('tentang.html')
+    year = datetime.datetime.now().year
+    return render_template('tentang.html', year=year)
 
 @app.route("/proyek")
 def proyek():
     year = datetime.datetime.now().year
     return render_template('proyek.html', year=year)
 
+#Admin
 @app.route("/admin")
 def admin():
-    return render_template('admin.html')
+    if session.get('logged_in'):
+        return render_template('admin.html', username=session['username'])
+    else:
+        return render_template('403.html')
+@app.route("/table")
+def table():
+    if session.get('logged_in'):
+        # Ambil datahp dari database dengan memanggil fungsi datahp()
+        datahp_result = datahp()  # Panggilan fungsi untuk mendapatkan datahp
+        # Kirim datahp ke template
+        return render_template('table.html', username=session['username'], datahp=datahp_result)
+    else:
+        return render_template('403.html')
 
+
+#Fungsi Login
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -82,15 +103,18 @@ def login():
 
     return render_template('login.html')
 
-# Route untuk logout
+#Fungsi Log Out
 @app.route("/logout")
 def logout():
     session.clear()
-    session.pop('logged_in', None)
-    session.pop('username', None)
+    # session.pop('logged_in', None)
+    # session.pop('username', None)
     return redirect(url_for('index'))
 
-
+#Error 404
+@app.errorhandler(404)  # Tambahkan error handler untuk 404
+def page_not_found(error):
+    return render_template("404.html"), 404
 @app.route("/<path:path>")  # Tangkap semua request path yang tidak valid
 def catch_all(path):
     return page_not_found(404)  # Lanjut halaman 404

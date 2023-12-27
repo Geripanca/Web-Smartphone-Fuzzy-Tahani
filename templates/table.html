@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Re-SPhone</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/Re-Sphone-Logo.ico') }}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">  
+  </head>
+  <body>
+    <!-- component -->
+
+
+    <!-- page -->
+    <main class="min-h-screen w-full bg-base-100 text-gray-200" x-data="layout">
+      <!-- header page -->
+      <header class="flex w-full items-center justify-between bg-base-200 p-2">
+        <!-- logo -->
+        <div class="flex items-center space-x-2">
+          <button type="button" class="text-3xl" @click="asideOpen = !asideOpen"><i class="bx bx-menu"></i></button>
+          <div>Re-Sphone Admin</div>
+        </div>
+
+        <!-- button profile -->
+        <div>
+          <button type="button" @click="profileOpen = !profileOpen" @click.outside="profileOpen = false" class="h-9 w-9 overflow-hidden rounded-full">
+            <img src="https://institutcommotions.com/wp-content/uploads/2018/05/blank-profile-picture-973460_960_720-1.png" alt="plchldr.co" />
+          </button>
+
+          <!-- dropdown profile -->
+          <div class="absolute right-2 mt-1 w-48 divide-y divide-gray-200 rounded-md bg-base-100 shadow-md" x-show="profileOpen" x-transition>
+            <div class="flex items-center space-x-2 p-2">
+              <img src="https://institutcommotions.com/wp-content/uploads/2018/05/blank-profile-picture-973460_960_720-1.png" alt="plchldr.co" class="h-9 w-9 rounded-full" />
+              <div class="font-medium">{{ username }}</div>
+            </div>
+            <div class="p-2">
+              <a href="{{ url_for('logout') }}">
+              <button class="flex items-center space-x-2 transition hover:text-violet-600">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                <div>Log Out</div>
+              </button>
+            </div>
+          </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex">
+        <!-- aside -->
+        <aside class="flex w-72 flex-col space-y-2 p-2 bg-base-200 h-screen" x-show="asideOpen">
+          <a href="{{ url_for('admin') }}" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-violet-600">
+            <span class="text-2xl"><i class="bx bx-home"></i></span>
+            <span>Dashboard</span>
+          </a>
+          <a href="{{ url_for('table') }}" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-violet-600">
+            <span class="text-2xl"><i class="bx bx-table"></i></span>
+            <span>Tabel</span>
+          </a> 
+        </aside>
+        <!-- main content page -->
+        <div class="w-full p-4 bg-base-100">
+            <h2 class="max-w-2xl mb-5 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">Data Handphone</h2>
+            <p class=" mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Database untuk mengelola data HP.</p>
+            <button
+            class="middle none center ml-6 mb-3 rounded-lg bg-violet-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            data-ripple-light="true"
+            >
+            +Tambah
+          </button>
+            <!-- component -->
+    <div class="flex flex-col">
+    <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+      <div class="py-2 inline-block min-w-full sm:px-4 lg:px-6">
+        <div class="overflow-hidden">
+          <table class="min-w-full">
+            <thead class="bg-base-200 border-b">
+              <tr>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Merek
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Harga
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Dimensi
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Kamera Belakang
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Kamera Depan
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Kecepatan Prosesor
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Core
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Baterai
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                  Aksi
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for data in datahp %} 
+              <tr class="bg-base-300 border-b">
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.merek}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.harga}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.dimensi}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.kamerablkng}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.kameradpn}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.kecprosesor}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.core}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ data.baterai}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                
+                </td>
+              </tr>
+              {% endfor %}             
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+       
+</div>
+
+
+      
+    </main>
+</div>
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("layout", () => ({
+          profileOpen: false,
+          asideOpen: true,
+        }));
+      });
+    </script>
+
+  </body>
+</html>
