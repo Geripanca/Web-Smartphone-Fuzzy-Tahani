@@ -1880,6 +1880,10 @@ html {
   margin-left: auto;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .mr-10 {
   margin-right: 2.5rem;
 }
@@ -2595,6 +2599,11 @@ html {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 .ring-inset {
   --tw-ring-inset: inset;
 }
@@ -2619,8 +2628,16 @@ html {
   transition-duration: 150ms;
 }
 
+.duration-150 {
+  transition-duration: 150ms;
+}
+
 .duration-200 {
   transition-duration: 200ms;
+}
+
+.ease-linear {
+  transition-timing-function: linear;
 }
 
 .hover\:bg-gray-100:hover {
@@ -2721,6 +2738,11 @@ html {
 
 .focus\:ring-opacity-50:focus {
   --tw-ring-opacity: 0.5;
+}
+
+.active\:bg-violet-600:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
 }
 
 .active\:text-indigo-500:active {

@@ -1,6 +1,8 @@
 import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 import pymysql
+
+
 app = Flask(__name__)
 
 # Change this to your secret key (can be anything, it's for extra protection)
@@ -38,8 +40,8 @@ def datahp():
     db = get_db()
     cursor = db.cursor()
     cursor.execute("SELECT * FROM tb_datahp")
-    datahp = cursor.fetchall()
-    return datahp
+    datahp_result = cursor.fetchall()
+    return datahp_result
 
 #User
 @app.route("/")
@@ -70,10 +72,12 @@ def table():
     if session.get('logged_in'):
         # Ambil datahp dari database dengan memanggil fungsi datahp()
         datahp_result = datahp()  # Panggilan fungsi untuk mendapatkan datahp
+        
         # Kirim datahp ke template
         return render_template('table.html', username=session['username'], datahp=datahp_result)
     else:
         return render_template('403.html')
+
 
 
 #Fungsi Login

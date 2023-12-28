@@ -71,7 +71,7 @@
             class="middle none center ml-6 mb-3 rounded-lg bg-violet-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             data-ripple-light="true"
             >
-            +Tambah
+            <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
             <!-- component -->
     <div class="flex flex-col">
@@ -111,7 +111,8 @@
               </tr>
             </thead>
             <tbody>
-            {% for data in datahp %} 
+          {% if datahp_result %}
+            {% for data in datahp_result %} 
               <tr class="bg-base-300 border-b">
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   {{ data.merek}}
@@ -138,11 +139,21 @@
                   {{ data.baterai}}
                 </td>
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
+                <button class="bg-violet-500 text-white active:bg-violet-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                <i class="fa fa-book"></i>
+                </button>
+                <button class="bg-violet-500 text-white active:bg-violet-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                <i class="fa fa-trash"></i>
+             </button>
                 </td>
               </tr>
-              {% endfor %}             
+              {% endfor %}         
             </tbody>
+            {% else %}
+                <tr class="bg-base-300 border-b">
+                  <td colspan="9" class="text-sm text-gray-200 text-center font-light px-6 py-4 whitespace-nowrap">Data tidak tersedia.</td>
+                </tr>
+              {% endif %}    
           </table>
         </div>
       </div>
