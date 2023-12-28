@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import pymysql
 
 
+
 app = Flask(__name__)
 
 # Change this to your secret key (can be anything, it's for extra protection)
@@ -25,7 +26,6 @@ def get_db():
             user=app.config['MYSQL_USER'],
             password=app.config['MYSQL_PASSWORD'],
             database=app.config['MYSQL_DB']
-            
         )
     return g.db
 
@@ -35,14 +35,35 @@ def close_connection(exception):
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
-def datahp():
-    # Ambil semua data dari tabel datahp menggunakan cursor
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM tb_datahp")
-    datahp_result = cursor.fetchall()
-    return datahp_result
 
+
+@app.route("/table")
+def table():
+    if session.get('logged_in'):
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM tb_datahp")
+        datahp = cursor.fetchall()
+        # Ambil datahp dari database dengan memanggil fungsi datahp()
+        datahp_result = datahp  # Panggilan fungsi untuk mendapatkan datahp
+        # Kirim datahp ke template
+        return render_template('table.html', username=session['username'], datahp=datahp_result)
+    else:
+        return render_template('403.html')
+    
+#tambah data
+def tambahdata():
+    if session.get('logged_in'):
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO tb_datahp(merek, harga, dimensi, kamerablkng, kameradpn, kecprosesor, core, baterai) VALUES(%s, %d, %d, %d, %d, %d, %d, %d)")
+        datahp = cursor.fetchall()
+        # Ambil datahp dari database dengan memanggil fungsi datahp()
+        datahp_result = datahp  # Panggilan fungsi untuk mendapatkan datahp
+        # Kirim datahp ke template
+        return render_template('table.html', username=session['username'], datahp=datahp_result)
+    else:
+        return render_template('403.html')
 #User
 @app.route("/")
 @app.route("/index")
@@ -65,16 +86,6 @@ def proyek():
 def admin():
     if session.get('logged_in'):
         return render_template('admin.html', username=session['username'])
-    else:
-        return render_template('403.html')
-@app.route("/table")
-def table():
-    if session.get('logged_in'):
-        # Ambil datahp dari database dengan memanggil fungsi datahp()
-        datahp_result = datahp()  # Panggilan fungsi untuk mendapatkan datahp
-        
-        # Kirim datahp ke template
-        return render_template('table.html', username=session['username'], datahp=datahp_result)
     else:
         return render_template('403.html')
 

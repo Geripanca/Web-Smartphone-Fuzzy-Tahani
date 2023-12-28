@@ -73,6 +73,7 @@
             >
             <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
+            
             <!-- component -->
     <div class="flex flex-col">
     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
@@ -81,28 +82,28 @@
           <table class="min-w-full">
             <thead class="bg-base-200 border-b">
               <tr>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="merek">
                   Merek
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="harga">
                   Harga
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="dimensi">
                   Dimensi
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="kamerablkng">
                   Kamera Belakang
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="kameradpn">
                   Kamera Depan
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="kecprosesor">
                   Kecepatan Prosesor
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="core">
                   Core
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left" name="baterai">
                   Baterai
                 </th>
                 <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
@@ -111,32 +112,33 @@
               </tr>
             </thead>
             <tbody>
-          {% if datahp_result %}
-            {% for data in datahp_result %} 
+          {% if datahp|length != 0 %}
+            {% for row in datahp  %} 
+            
               <tr class="bg-base-300 border-b">
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.merek}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[0] }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.harga}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[1] }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.dimensi}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[2] }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.kamerablkng}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[3] }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.kameradpn}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[4] }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.kecprosesor}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[5] }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.core}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[6] }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{ data.baterai}}
+                <td class="text-sm text-gray-200 font-light px-6 py-4 whitespace-nowrap">
+                  {{ row[7] }}
                 </td>
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                 <button class="bg-violet-500 text-white active:bg-violet-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
