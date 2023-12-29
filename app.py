@@ -49,21 +49,37 @@ def table():
         # Kirim datahp ke template
         return render_template('table.html', username=session['username'], datahp=datahp_result)
     else:
-        return render_template('403.html')
-    
-#tambah data
+        return render_template('403.html')#tambah data
+
+
+@app.route('/tambahdata', methods = ['POST', 'GET'])
 def tambahdata():
     if session.get('logged_in'):
-        db = get_db()
-        cursor = db.cursor()
-        cursor.execute("INSERT INTO tb_datahp(merek, harga, dimensi, kamerablkng, kameradpn, kecprosesor, core, baterai) VALUES(%s, %d, %d, %d, %d, %d, %d, %d)")
-        datahp = cursor.fetchall()
-        # Ambil datahp dari database dengan memanggil fungsi datahp()
-        datahp_result = datahp  # Panggilan fungsi untuk mendapatkan datahp
-        # Kirim datahp ke template
-        return render_template('table.html', username=session['username'], datahp=datahp_result)
+        if request.method == 'POST':
+            # Mendapatkan data dari formulir HTML menggunakan request.form
+            merek = request.form['merek']
+            harga = float(request.form['harga'])
+            dimensi = float(request.form['dimensi'])
+            kamerablkng = float(request.form['kamerablkng'])
+            kameradpn = float(request.form['kameradpn'])
+            kecprosesor = float(request.form['kecprosesor'])
+            core = float(request.form['core'])
+            baterai = float(request.form['baterai'])
+
+            # Menyimpan data ke database
+            db = get_db()
+            cursor = db.cursor()
+            cursor.execute("INSERT INTO tb_datahp(merek, harga, dimensi, kamerablkng, kameradpn, kecprosesor, core, baterai) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                           (merek, harga, dimensi, kamerablkng, kameradpn, kecprosesor, core, baterai))
+            db.commit()
+            flash('Data Berhasil Ditambahkan!', 'danger')
+            return redirect(url_for('table'))  # Ganti 'nama_rute_halaman_setelah_tambah_data' dengan rute yang sesuai
+        else:
+            flash('Terdapat Kesalahan', 'danger')
+            return redirect(url_for('table'))  # Ganti 'form_tambah_data.html' dengan nama template HTML yang sesuai
     else:
-        return render_template('403.html')
+        return render_template('403.html') 
+
 #User
 @app.route("/")
 @app.route("/index")
