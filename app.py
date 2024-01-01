@@ -2,8 +2,6 @@ import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 import pymysql
 
-
-
 app = Flask(__name__)
 
 # Change this to your secret key (can be anything, it's for extra protection)
@@ -36,7 +34,7 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-
+#Fungsi untuk membaca Data
 @app.route("/table")
 def table():
     if session.get('logged_in'):
@@ -51,7 +49,7 @@ def table():
     else:
         return render_template('403.html')#tambah data
 
-
+# Fungsi tambah data
 @app.route('/tambahdata', methods = ['POST', 'GET'])
 def tambahdata():
     if session.get('logged_in'):
@@ -64,8 +62,7 @@ def tambahdata():
             kameradpn = float(request.form['kameradpn'])
             kecprosesor = float(request.form['kecprosesor'])
             core = float(request.form['core'])
-            baterai = float(request.form['baterai'])
-
+            baterai = float(request.form['baterai'])            
             # Menyimpan data ke database
             db = get_db()
             cursor = db.cursor()
@@ -79,6 +76,39 @@ def tambahdata():
             return redirect(url_for('table'))  # Ganti 'form_tambah_data.html' dengan nama template HTML yang sesuai
     else:
         return render_template('403.html') 
+
+
+#Fungsi untuk memodifikasi data
+@app.route('/updatedata/<string:merek>', methods=['POST', 'GET'])
+def updatedata(merek):
+    if session.get('logged_in'):
+        db = get_db()
+        cursor = db.cursor()
+        
+        if request.method == 'POST':
+            # Mendapatkan data dari formulir HTML menggunakan request.form
+            merek = request.form['merek']
+            harga = float(request.form['harga'])
+            dimensi = float(request.form['dimensi'])
+            kamerablkng = float(request.form['kamerablkng'])
+            kameradpn = float(request.form['kameradpn'])
+            kecprosesor = float(request.form['kecprosesor'])
+            core = float(request.form['core'])
+            baterai = float(request.form['baterai'])
+
+            # Melakukan update data di database
+            cursor.execute("UPDATE tb_datahp SET harga=%s, dimensi=%s, kamerablkng=%s, kameradpn=%s, kecprosesor=%s, core=%s, baterai=%s WHERE merek=%s",
+                           (harga, dimensi, kamerablkng, kameradpn, kecprosesor, core, baterai, merek))
+            db.commit()
+
+            flash('Data Berhasil Diperbarui!', 'danger')
+            return redirect(url_for('table'))  # Ganti 'nama_rute_halaman_setelah_update_data' dengan rute yang sesuai
+        else:
+            flash('Terdapat Kesalahan', 'danger')
+            return redirect(url_for('table'))
+            
+    else:
+        return render_template('403.html')
 
 #User
 @app.route("/")
